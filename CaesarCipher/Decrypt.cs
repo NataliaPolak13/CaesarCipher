@@ -65,25 +65,19 @@ public class Decrypt
     public string DecryptText(string text)
     {
         char[] operationText = text.ToCharArray();
-        char[] exclusionSet = { 'ą', 'ę', 'ć', 'ź', 'ż', 'ś', 'ł', 'ó', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ',', '!', '-', ' ', '?', '\n', '(', ')'};
-
         var decryptedText = new System.Collections.Generic.List<char>();
-
         int displacement = GetDisplacement();
 
         foreach (char character in operationText)
         {
-            if (exclusionSet.Contains(character))
-            {
-                decryptedText.Add(character);
-            }
-            else
-            {
+            
                 // C = (n - k) mod 26 n->numer litery k-> klucz
 
                 var newChar = 0;
 
                 int asciiCode = (int)character;
+            if((asciiCode >= 65 && asciiCode <= 90) || (asciiCode >= 97 && asciiCode <= 122)) 
+            { 
                 if ((asciiCode >= 65 && asciiCode <= 90))
                 {
                     newChar = ((asciiCode - 65 - displacement + 26) % 26) + 65;
@@ -94,9 +88,14 @@ public class Decrypt
                     newChar = ((asciiCode - 97 - displacement + 26) % 26) + 97;
                 }
                 decryptedText.Add((char)newChar);
-
             }
+            else
+            {
+                decryptedText.Add(character);
+            }
+
         }
+
         string finalText = new string(decryptedText.ToArray());
         Console.WriteLine(finalText);
         return finalText;
