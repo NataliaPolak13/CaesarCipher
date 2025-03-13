@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
 using static System.Net.Mime.MediaTypeNames;
 
 public class Decrypt
@@ -50,6 +51,34 @@ public class Decrypt
 				Console.WriteLine("Twoje przesunięcie nie jest liczba calkowita wieksza od 0. Sprobuj ponownie.");
             }
         }
+
+    }
+    public string DecryptText(string text)
+    {
+        char[] operationText = text.ToCharArray();
+        char[] exclusionSet = { 'ą', 'ę', 'ć', 'ź', 'ż', 'ś', 'ł', 'ó'};
+
+        var decryptedText = new System.Collections.Generic.List<char>();
+
+        int displacement = GetDisplacement();
+
+        foreach (char character in operationText)
+        {
+            if (exclusionSet.Contains(character))
+            {
+                decryptedText.Add(character);
+            }
+            else
+            {
+                int asciiCode = (int)character;
+                asciiCode += displacement;
+                decryptedText.Add((char)asciiCode);
+
+            }
+        }
+        string finalText = new string(decryptedText.ToArray());
+        return finalText;
+
 
     }
 }
