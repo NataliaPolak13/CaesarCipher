@@ -5,8 +5,7 @@
         static void Main(string[] args)
         {
             Decrypt decrypt = new Decrypt();
-            decrypt.GetTextWithoutPolishCharacters();
-            decrypt.GetDisplacement();
+            decrypt.Decryption();
         }
 
 
