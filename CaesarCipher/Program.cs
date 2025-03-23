@@ -6,10 +6,9 @@ namespace CaesarCipher
     {
         static void Main(string[] args)
         {
-            Decrypt decrypt = new Decrypt();
-            decrypt.Operation();
-            Encrypt encrypt = new Encrypt();
-            encrypt.Encryption();
+            Menu menu = new Menu();
+            menu.RunMenu();
+
         }
 
 
