@@ -16,8 +16,14 @@ namespace CaesarCipher
 
             var menu = new Dictionary<int, (string, Action)>
             {
-                { 1, ("Zaszyfruj tekst", () => operations.EncryptText(text)) },
-                { 2, ("Zdeszyfruj tekst", () => operations.DecryptText(text)) },
+                { 1, ("Zaszyfruj tekst", () => {
+                    int x = 1;
+                    operations.OperationsWithText(text, x);
+                }) },
+                { 2, ("Odszyfruj tekst", () => {
+                    int x = -1;
+                    operations.OperationsWithText(text, x);
+                }) },
                 { 3, ("Wyjdź z programu", () => Environment.Exit(0)) }
             };
 
