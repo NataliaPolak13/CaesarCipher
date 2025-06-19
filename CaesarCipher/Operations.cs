@@ -11,20 +11,22 @@ namespace CaesarCipher
     {
         public string GetTextWithoutPolishCharacters()
         {
+
+            Console.Write("Podaj tekst. Zakończenie wpisywania to pusta linia: ");
+            string input = "";
+            string? line;
+
             while (true)
             {
+                line = Console.ReadLine();
+                if (string.IsNullOrEmpty(line)) break;
+                input += line + Environment.NewLine;
+            }
 
-                Console.Write("Podaj tekst. Wpisz stop po wpisaniu całości: ");
-                string input = "";
-                string line;
+            return input;
 
-                while ((line = Console.ReadLine()) != "stop")
-                {
-                    input += line + Environment.NewLine;
-                }
-
-                return input;
-                /*             var input = Console.ReadLine();
+        }  
+            /*             var input = Console.ReadLine();
 
                          if (OnlyLetter(input))
                            {
@@ -36,9 +38,7 @@ namespace CaesarCipher
                                Thread.Sleep(1500);
                                Console.Clear();
                            }*/
-            }
-
-        }
+          
 
         public static int GetDisplacement()
         {
